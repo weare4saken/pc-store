@@ -1,17 +1,11 @@
 package com.weare4saken.pcstore.service;
 
 import com.weare4saken.pcstore.dto.HarddiskDto;
-import com.weare4saken.pcstore.dto.MonitorDto;
 import com.weare4saken.pcstore.enums.Capacity;
-import com.weare4saken.pcstore.enums.Diagonal;
-import com.weare4saken.pcstore.enums.Size;
 import com.weare4saken.pcstore.exception.ProductNotFoundException;
 import com.weare4saken.pcstore.model.Harddisk;
-import com.weare4saken.pcstore.model.Monitor;
 import com.weare4saken.pcstore.repository.HarddiskRepository;
-import com.weare4saken.pcstore.repository.MonitorRepository;
 import com.weare4saken.pcstore.service.impl.HarddiskService;
-import com.weare4saken.pcstore.service.impl.MonitorService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
