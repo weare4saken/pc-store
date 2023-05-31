@@ -19,7 +19,6 @@
     <properties>
         <java.version>11</java.version>
         <org.springdoc.version>1.6.15</org.springdoc.version>
-        <org.liquibase.version>4.21.1</org.liquibase.version>
         <org.junit.jupiter.version>5.9.2</org.junit.jupiter.version>
         <org.mockito.version>5.2.0</org.mockito.version>
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
@@ -53,12 +52,6 @@
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>${org.springdoc.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-            <version>${org.liquibase.version}</version>
         </dependency>
 
         <dependency>

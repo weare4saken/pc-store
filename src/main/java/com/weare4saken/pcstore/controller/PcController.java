@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,14 +26,14 @@ public class PcController {
     @Operation(
             summary = "Добавление нового компьютера", tags = "Настольные компьютеры",
             responses = {
-                    @ApiResponse(responseCode = "200", description = "OK",
+                    @ApiResponse(responseCode = "201", description = "CREATED",
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema(implementation = PcDto.class))})
             }
     )
     @PostMapping
     public ResponseEntity<PcDto> addPc(@RequestBody PcDto pcDto) {
-        return ResponseEntity.ok(pcService.addProduct(pcDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(pcService.addProduct(pcDto));
     }
 
     @Operation(

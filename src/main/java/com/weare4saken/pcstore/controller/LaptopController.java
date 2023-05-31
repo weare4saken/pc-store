@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,14 +25,14 @@ public class LaptopController {
     @Operation(
             summary = "Добавление нового ноутбука", tags = "Ноутбуки",
             responses = {
-                    @ApiResponse(responseCode = "200", description = "OK",
+                    @ApiResponse(responseCode = "201", description = "CREATED",
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema(implementation = LaptopDto.class))})
             }
     )
     @PostMapping
     public ResponseEntity<LaptopDto> addLaptop(@RequestBody LaptopDto laptopDto) {
-        return ResponseEntity.ok(laptopService.addProduct(laptopDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(laptopService.addProduct(laptopDto));
     }
 
     @Operation(
