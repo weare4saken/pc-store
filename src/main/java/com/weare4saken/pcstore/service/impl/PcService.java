@@ -28,7 +28,7 @@ public class PcService implements ProductDtoService<PcDto>, ProductService<Pc> {
     @Override
     public PcDto addProduct(PcDto product) {
         log.debug("Adding PC");
-        if(validCheck(product)) throw new IncorrectArgumentException();
+        if(!validCheck(product)) throw new IncorrectArgumentException();
         Pc pc = PcMapper.INSTANCE.toEntity(product);
         log.debug("PC successfully add");
         return PcMapper.INSTANCE.toDto(pcRepository.save(pc));
@@ -63,11 +63,11 @@ public class PcService implements ProductDtoService<PcDto>, ProductService<Pc> {
     @Override
     public boolean validCheck(PcDto product) {
         log.debug("Validation check for PC");
-        return product.getSerialNumber() == null || product.getSerialNumber().isBlank()
-                || product.getProducer() == null || product.getProducer().isBlank()
-                || product.getAmount() == null
-                || product.getPrice() == null
-                || product.getFormFactor() == null;
+        return product.getSerialNumber() != null && !product.getSerialNumber().isBlank()
+                && product.getProducer() != null && !product.getProducer().isBlank()
+                && product.getAmount() != null
+                && product.getPrice() != null
+                && product.getFormFactor() != null;
     }
 
     @Override

@@ -28,7 +28,7 @@ public class LaptopService implements ProductDtoService<LaptopDto>, ProductServi
     @Override
     public LaptopDto addProduct(LaptopDto product) {
         log.debug("Adding laptop");
-        if(validCheck(product)) throw new IncorrectArgumentException();
+        if(!validCheck(product)) throw new IncorrectArgumentException();
         Laptop laptop = LaptopMapper.INSTANCE.toEntity(product);
         log.debug("Laptop successfully add");
         return LaptopMapper.INSTANCE.toDto(laptopRepository.save(laptop));
@@ -63,11 +63,11 @@ public class LaptopService implements ProductDtoService<LaptopDto>, ProductServi
     @Override
     public boolean validCheck(LaptopDto product) {
         log.debug("Validation check for laptop");
-        return product.getSerialNumber() == null || product.getSerialNumber().isBlank()
-                || product.getProducer() == null || product.getProducer().isBlank()
-                || product.getAmount() == null
-                || product.getPrice() == null
-                || product.getSize() == null;
+        return product.getSerialNumber() != null && !product.getSerialNumber().isBlank()
+                && product.getProducer() != null && !product.getProducer().isBlank()
+                && product.getAmount() != null
+                && product.getPrice() != null
+                && product.getSize() != null;
     }
 
     @Override

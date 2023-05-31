@@ -28,7 +28,7 @@ public class MonitorService implements ProductDtoService<MonitorDto>, ProductSer
     @Override
     public MonitorDto addProduct(MonitorDto product) {
         log.debug("Adding monitor");
-        if(validCheck(product)) throw new IncorrectArgumentException();
+        if(!validCheck(product)) throw new IncorrectArgumentException();
         Monitor monitor = MonitorMapper.INSTANCE.toEntity(product);
         log.debug("Monitor successfully add");
         return MonitorMapper.INSTANCE.toDto(monitorRepository.save(monitor));
@@ -63,11 +63,11 @@ public class MonitorService implements ProductDtoService<MonitorDto>, ProductSer
     @Override
     public boolean validCheck(MonitorDto product) {
         log.debug("Validation check for monitor");
-        return product.getSerialNumber() == null || product.getSerialNumber().isBlank()
-                || product.getProducer() == null || product.getProducer().isBlank()
-                || product.getAmount() == null
-                || product.getPrice() == null
-                || product.getDiagonal() == null;
+        return product.getSerialNumber() != null && !product.getSerialNumber().isBlank()
+                && product.getProducer() != null && !product.getProducer().isBlank()
+                && product.getAmount() != null
+                && product.getPrice() != null
+                && product.getDiagonal() != null;
     }
 
     @Override

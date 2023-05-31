@@ -28,7 +28,7 @@ public class HarddiskService implements ProductDtoService<HarddiskDto>, ProductS
     @Override
     public HarddiskDto addProduct(HarddiskDto product) {
         log.debug("Adding harddisk");
-        if(validCheck(product)) throw new IncorrectArgumentException();
+        if(!validCheck(product)) throw new IncorrectArgumentException();
         Harddisk harddisk = HarddiskMapper.INSTANCE.toEntity(product);
         log.debug("Harddisk successfully add");
         return HarddiskMapper.INSTANCE.toDto(harddiskRepository.save(harddisk));
@@ -63,11 +63,11 @@ public class HarddiskService implements ProductDtoService<HarddiskDto>, ProductS
     @Override
     public boolean validCheck(HarddiskDto product) {
         log.debug("Validation check for harddisk");
-        return product.getSerialNumber() == null || product.getSerialNumber().isBlank()
-                || product.getProducer() == null || product.getProducer().isBlank()
-                || product.getAmount() == null
-                || product.getPrice() == null
-                || product.getCapacity() == null;
+        return product.getSerialNumber() != null && !product.getSerialNumber().isBlank()
+                && product.getProducer() != null && !product.getProducer().isBlank()
+                && product.getAmount() != null
+                && product.getPrice() != null
+                && product.getCapacity() != null;
     }
 
     @Override
