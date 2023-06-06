@@ -44,6 +44,8 @@ ___
 * **Test**:
     - Junit
     - Mockito
+* **SQL**:
+    - H2-database
 
 ___
 ## Задание
